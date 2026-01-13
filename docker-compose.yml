@@ -6,8 +6,8 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MY_ROOT_PASSWORD: "root"
-      MY_DATABASE: "flask_db"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "flask_db"
     ports:
       - "3306:3306"
     volumes:
@@ -19,17 +19,17 @@ services:
     container_name: flask_app
     build:
       context: .
-      ports:
-        - "5000:5000"
-      environment:
-        - MYSQL_HOST=mysql
-        - MYSQL_USER=root
-        - MYSQL_PASSWORD=root
-        - MYSQL_DB=flask_db
-      networks:
-        - devops
-      depends_on:
-        - mysql
+    ports:
+      - "5000:5000"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB=flask_db
+    networks:
+      - devops
+    depends_on:
+      - mysql
 
 
 volumes:
