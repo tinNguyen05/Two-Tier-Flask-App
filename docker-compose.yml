@@ -36,4 +36,5 @@ volumes:
   db_data:
 
 networks:
-  - devops
+  devops:
+    driver: bridge
